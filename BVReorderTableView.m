@@ -160,8 +160,8 @@
         [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
         [self insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
         
-        if ([self.delegate respondsToSelector:@selector(saveObjectAndInsertBlankRowAtIndexPath:)]) {
-            self.savedObject = [self.delegate saveObjectAndInsertBlankRowAtIndexPath:indexPath];
+        if ([self.delegate respondsToSelector:@selector(tableView:saveObjectAndInsertBlankRowAtIndexPath:)]) {
+            self.savedObject = [self.delegate tableView:self saveObjectAndInsertBlankRowAtIndexPath:indexPath];
         }
         else {
             NSLog(@"saveObjectAndInsertBlankRowAtIndexPath: is not implemented");
@@ -229,9 +229,9 @@
                              [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
                              [self insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
                              
-                             if ([self.delegate respondsToSelector:@selector(finishReorderingWithObject:atIndexPath:)])
+                             if ([self.delegate respondsToSelector:@selector(tableView:finishReorderingWithObject:atIndexPath:)])
                              {
-                                 [self.delegate finishReorderingWithObject:self.savedObject atIndexPath:indexPath];
+                                 [self.delegate tableView:self finishReorderingWithObject:self.savedObject atIndexPath:indexPath];
                              }
                              else {
                                  NSLog(@"finishReorderingWithObject:atIndexPath: is not implemented");
@@ -271,8 +271,8 @@
         [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:self.currentLocationIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         [self insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         
-        if ([self.delegate respondsToSelector:@selector(moveRowAtIndexPath:toIndexPath:)]) {
-            [self.delegate moveRowAtIndexPath:self.currentLocationIndexPath toIndexPath:indexPath];
+        if ([self.delegate respondsToSelector:@selector(tableView:moveRowAtIndexPath:toIndexPath:)]) {
+            [self.delegate tableView:self moveRowAtIndexPath:self.currentLocationIndexPath toIndexPath:indexPath];
         }
         else {
             NSLog(@"moveRowAtIndexPath:toIndexPath: is not implemented");
